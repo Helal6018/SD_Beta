@@ -2,16 +2,7 @@ package com.transport_management_system.bus.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.transport_management_system.bus.model.BusSchedule;
 import com.transport_management_system.bus.service.BusScheduleService;
@@ -22,7 +13,7 @@ public class BusScheduleController {
 
     private final BusScheduleService service;
 
-    // Constructor injection
+    // Constructor
     public BusScheduleController(BusScheduleService service) {
         this.service = service;
     }
@@ -91,7 +82,6 @@ public class BusScheduleController {
     public boolean updateDriverInfo(@PathVariable Long id,
                                     @RequestParam String name,
                                     @RequestParam(required = false) String phone) {
-        // Since phone is not in our model, we only update name and ignore/log the phone param
         return service.updateDriverInfo(id, name);
     }
 }
