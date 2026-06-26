@@ -27,6 +27,7 @@ public interface BusScheduleService {
     List<BusSchedule> searchByUserType(String type);
 
     List<BusSchedule> searchBySchedule(String schedule);
+    BusSchedule bookSeat(Long busId, int seatNumber, String passengerName);
 
     long totalBuses();
 

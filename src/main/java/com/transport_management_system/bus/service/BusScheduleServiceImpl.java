@@ -99,7 +99,7 @@ public class BusScheduleServiceImpl implements BusScheduleService {
     public long totalBuses() {
         return repository.count();
     }
-
+    
     @Override
     public boolean updateDriverInfo(Long id, String name) {
         return repository.findById(id).map(bus -> {
@@ -108,4 +108,18 @@ public class BusScheduleServiceImpl implements BusScheduleService {
             return true;
         }).orElse(false);
     }
+    @Override
+    public BusSchedule bookSeat(Long busId, int seatNumber, String passengerName) {
+    BusSchedule bus = repository.findById(busId).orElse(null);
+
+        if (bus == null) return null;
+
+        if (bus.getAvailableSeats() > 0) {
+            bus.setAvailableSeats(bus.getAvailableSeats() - 1);
+            return repository.save(bus);
+        } else {
+            return null; 
+        }
+    }
+    
 }
